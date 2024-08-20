@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import authService from "../services/authService.js";
 
 export default function LoginForm() {
   const {
@@ -9,9 +10,11 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // Placeholder function for form submission
     console.log("Form Data: ", data);
+    const result = await authService.login(data.email, data.password);
+    console.log(result);
   };
 
   return (
